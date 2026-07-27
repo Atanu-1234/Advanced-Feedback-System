@@ -6,7 +6,9 @@ const ProtectedRoute = ({ children, requiredRole }) => {
   const { isAuthenticated, role } = useContext(AuthContext);
 
   if (!isAuthenticated) return <Navigate to="/login" replace />;
-  if (requiredRole && role !== requiredRole) return <Navigate to="/" replace />;
+  if (requiredRole && role !== requiredRole) {
+    return <Navigate to={role === 'admin' ? '/admin/dashboard' : '/feedback'} replace />;
+  }
 
   return children;
 };

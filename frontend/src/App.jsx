@@ -20,7 +20,7 @@ function App() {
               <Route path="/"               element={<Navigate to="/register" replace />} />
               <Route path="/register"       element={<Register />} />
               <Route path="/login"          element={<Login />} />
-              <Route path="/feedback"       element={<PublicFeedback />} />
+              <Route path="/feedback"       element={<ProtectedRoute requiredRole="user"><PublicFeedback /></ProtectedRoute>} />
               <Route
                 path="/admin/dashboard"
                 element={
