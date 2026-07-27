@@ -1,5 +1,5 @@
 const express = require('express');
-const { GoogleGenAI, Type } = require('@google/genai');
+const Groq = require('groq-sdk');
 const jwt = require('jsonwebtoken');
 const Feedback = require('../models/Feedback');
 const { verifyToken } = require('../middleware/verifyToken');
@@ -7,40 +7,32 @@ const { verifyToken } = require('../middleware/verifyToken');
 const router = express.Router();
 
 async function analyzeReview(reviewText) {
-  const apiKey = process.env.GEMINI_API_KEY;
+  const apiKey = process.env.GROQ_API_KEY;
   if (!apiKey) {
-    console.error('❌ GEMINI_API_KEY is not set');
+    console.error('❌ GROQ_API_KEY is not set');
     return { sentiment: 'Neutral', keyItems: ['General'], requiresAction: false };
   }
 
   try {
-    const ai = new GoogleGenAI({ apiKey });
-    const response = await ai.models.generateContent({
-      model: 'gemini-2.5-flash',
-      contents: `You are a restaurant review analyzer. Analyze the following customer review and respond ONLY with a valid JSON object with exactly these fields:
+    const groq = new Groq({ apiKey });
+    const response = await groq.chat.completions.create({
+      model: 'llama-3.3-70b-versatile',
+      messages: [{
+        role: 'user',
+        content: `You are a restaurant review analyzer. Analyze the following customer review and respond ONLY with a valid JSON object with exactly these fields:
 - sentiment: one of "Positive", "Neutral", or "Negative"
 - keyItems: array of strings (food items, service aspects, or topics mentioned)
 - requiresAction: boolean (true if the review contains a serious complaint, request for refund, or urgent issue)
 
 Review: "${reviewText}"
 
-Respond with JSON only, no explanation.`,
-      config: {
-        responseMimeType: 'application/json',
-        responseSchema: {
-          type: Type.OBJECT,
-          properties: {
-            sentiment:      { type: Type.STRING,  enum: ['Positive', 'Neutral', 'Negative'] },
-            keyItems:       { type: Type.ARRAY, items: { type: Type.STRING } },
-            requiresAction: { type: Type.BOOLEAN }
-          },
-          required: ['sentiment', 'keyItems', 'requiresAction']
-        }
-      }
+Respond with JSON only, no markdown, no explanation.`
+      }],
+      response_format: { type: 'json_object' }
     });
 
-    const result = JSON.parse(response.text);
-    console.log('✅ Gemini analysis:', result);
+    const result = JSON.parse(response.choices[0].message.content);
+    console.log('✅ Groq analysis:', result);
     return result;
   } catch (error) {
     console.error('❌ Gemini analysis failed:', error.message);

@@ -17,7 +17,7 @@ const PublicFeedback = () => {
   const [error, setError]             = useState('');
   const [userHistory, setUserHistory] = useState([]);
   const { token, isAuthenticated, username } = useContext(AuthContext);
-  const apiBase = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
+  const apiBase = import.meta.env.VITE_API_BASE_URL;
 
   const fetchMyHistory = async () => {
     if (!isAuthenticated) return;

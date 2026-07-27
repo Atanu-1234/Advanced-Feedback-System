@@ -15,7 +15,7 @@ const Login = () => {
     setError('');
     setLoading(true);
     try {
-      const apiBase = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
+      const apiBase = import.meta.env.VITE_API_BASE_URL;
       const res  = await fetch(`${apiBase}/api/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
