@@ -9,6 +9,7 @@ const router = express.Router();
 async function analyzeReview(reviewText) {
   const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) {
+    console.error('❌ GEMINI_API_KEY is not set');
     return { sentiment: 'Neutral', keyItems: ['General'], requiresAction: false };
   }
 
@@ -16,14 +17,21 @@ async function analyzeReview(reviewText) {
     const ai = new GoogleGenAI({ apiKey });
     const response = await ai.models.generateContent({
       model: 'gemini-2.5-flash',
-      contents: `Analyze the following customer restaurant review and extract structured insights.\nReview: "${reviewText}"`,
+      contents: `You are a restaurant review analyzer. Analyze the following customer review and respond ONLY with a valid JSON object with exactly these fields:
+- sentiment: one of "Positive", "Neutral", or "Negative"
+- keyItems: array of strings (food items, service aspects, or topics mentioned)
+- requiresAction: boolean (true if the review contains a serious complaint, request for refund, or urgent issue)
+
+Review: "${reviewText}"
+
+Respond with JSON only, no explanation.`,
       config: {
         responseMimeType: 'application/json',
         responseSchema: {
           type: Type.OBJECT,
           properties: {
-            sentiment: { type: Type.STRING, enum: ['Positive', 'Neutral', 'Negative'] },
-            keyItems: { type: Type.ARRAY, items: { type: Type.STRING } },
+            sentiment:      { type: Type.STRING,  enum: ['Positive', 'Neutral', 'Negative'] },
+            keyItems:       { type: Type.ARRAY, items: { type: Type.STRING } },
             requiresAction: { type: Type.BOOLEAN }
           },
           required: ['sentiment', 'keyItems', 'requiresAction']
@@ -31,8 +39,11 @@ async function analyzeReview(reviewText) {
       }
     });
 
-    return JSON.parse(response.text);
+    const result = JSON.parse(response.text);
+    console.log('✅ Gemini analysis:', result);
+    return result;
   } catch (error) {
+    console.error('❌ Gemini analysis failed:', error.message);
     return { sentiment: 'Neutral', keyItems: ['Review'], requiresAction: false };
   }
 }
@@ -51,9 +62,13 @@ router.post('/', async (req, res) => {
     if (authHeader && authHeader.startsWith('Bearer ')) {
       try {
         const decoded = jwt.verify(
-          authHeader.split(' ')[1], 
+          authHeader.split(' ')[1],
           process.env.JWT_SECRET || 'super_secret_jwt_key_change_in_production'
         );
+        // Admins cannot submit feedback
+        if (decoded.role === 'admin') {
+          return res.status(403).json({ message: 'Admins cannot submit feedback' });
+        }
         userId = decoded.id;
       } catch (e) {
         // Continue anonymously if token invalid/expired
