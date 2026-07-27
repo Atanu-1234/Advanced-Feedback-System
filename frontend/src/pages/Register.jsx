@@ -33,125 +33,216 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#faf9f6] flex items-center justify-center px-4 py-16">
-      <div className="w-full max-w-4xl fade-up">
-        <div className="bg-white rounded-3xl shadow-lg border border-[#e8e0d5] overflow-hidden flex flex-col md:flex-row">
+    <div style={{
+      minHeight: '100vh',
+      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: '24px',
+      fontFamily: "'Inter', system-ui, sans-serif",
+    }}>
 
-          {/* Left panel */}
-          <div className="bg-[#2d5a27] md:w-5/12 p-10 flex flex-col justify-between">
-            <div>
-              <div className="flex items-center gap-2 mb-10">
-                <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center">
-                  <span className="text-white text-xs font-bold">RF</span>
-                </div>
-                <span className="font-display font-bold text-white text-lg">RestoFeedback</span>
-              </div>
-              <h2 className="font-display text-3xl font-bold text-white leading-snug mb-4">
-                Share your dining story.
-              </h2>
-              <p className="text-[#a8c9a4] text-sm leading-relaxed">
-                Join our community of food lovers helping restaurants grow through honest, AI-analyzed feedback.
-              </p>
+      {/* Floating card */}
+      <div style={{
+        width: '100%',
+        maxWidth: '420px',
+        background: '#ffffff',
+        borderRadius: '24px',
+        boxShadow: '0 25px 60px rgba(0,0,0,0.25)',
+        overflow: 'hidden',
+      }}>
+
+        {/* Card top banner */}
+        <div style={{
+          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+          padding: '36px 40px 32px',
+          textAlign: 'center',
+        }}>
+          {/* Icon */}
+          <div style={{
+            width: '64px', height: '64px',
+            background: 'rgba(255,255,255,0.2)',
+            borderRadius: '20px',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            margin: '0 auto 16px',
+            fontSize: '28px',
+            backdropFilter: 'blur(10px)',
+            border: '1px solid rgba(255,255,255,0.3)',
+          }}>🍽️</div>
+
+          <h1 style={{
+            color: '#ffffff',
+            fontSize: '26px',
+            fontWeight: '700',
+            margin: '0 0 8px',
+            letterSpacing: '-0.5px',
+          }}>Create Account</h1>
+
+          <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: '14px', margin: 0 }}>
+            Join and start sharing your dining experiences
+          </p>
+
+          {/* Step dots */}
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', marginTop: '20px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <div style={{
+                width: '24px', height: '24px', borderRadius: '50%',
+                background: '#ffffff', color: '#764ba2',
+                fontSize: '11px', fontWeight: '800',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+              }}>1</div>
+              <span style={{ color: '#ffffff', fontSize: '12px', fontWeight: '600' }}>Register</span>
             </div>
-
-            <div className="space-y-4 mt-10">
-              {[
-                { icon: '✦', text: 'Instant AI sentiment analysis' },
-                { icon: '✦', text: 'Track all your past reviews' },
-                { icon: '✦', text: 'Secure & private by default' },
-              ].map(f => (
-                <div key={f.text} className="flex items-center gap-3 text-sm text-[#a8c9a4]">
-                  <span className="text-[#6aaa62] text-xs">{f.icon}</span>
-                  {f.text}
-                </div>
-              ))}
+            <div style={{ width: '24px', height: '1px', background: 'rgba(255,255,255,0.4)' }} />
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <div style={{
+                width: '24px', height: '24px', borderRadius: '50%',
+                background: 'rgba(255,255,255,0.2)', color: 'rgba(255,255,255,0.6)',
+                fontSize: '11px', fontWeight: '700',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+              }}>2</div>
+              <span style={{ color: 'rgba(255,255,255,0.5)', fontSize: '12px' }}>Login</span>
             </div>
-          </div>
-
-          {/* Right form panel */}
-          <div className="flex-1 p-10">
-            {/* Steps */}
-            <div className="flex items-center gap-2 mb-8">
-              <div className="flex items-center gap-2">
-                <div className="w-6 h-6 rounded-full bg-[#2d5a27] text-white text-xs font-bold flex items-center justify-center">1</div>
-                <span className="text-sm font-semibold text-[#2d5a27]">Register</span>
-              </div>
-              <div className="flex-1 h-px bg-[#e8e0d5] max-w-8" />
-              <div className="flex items-center gap-2">
-                <div className="w-6 h-6 rounded-full bg-[#f0ebe3] text-[#b0a090] text-xs font-bold flex items-center justify-center">2</div>
-                <span className="text-sm text-[#b0a090]">Login</span>
-              </div>
-              <div className="flex-1 h-px bg-[#e8e0d5] max-w-8" />
-              <div className="flex items-center gap-2">
-                <div className="w-6 h-6 rounded-full bg-[#f0ebe3] text-[#b0a090] text-xs font-bold flex items-center justify-center">3</div>
-                <span className="text-sm text-[#b0a090]">Review</span>
-              </div>
+            <div style={{ width: '24px', height: '1px', background: 'rgba(255,255,255,0.4)' }} />
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <div style={{
+                width: '24px', height: '24px', borderRadius: '50%',
+                background: 'rgba(255,255,255,0.2)', color: 'rgba(255,255,255,0.6)',
+                fontSize: '11px', fontWeight: '700',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+              }}>3</div>
+              <span style={{ color: 'rgba(255,255,255,0.5)', fontSize: '12px' }}>Review</span>
             </div>
-
-            <h1 className="font-display text-2xl font-bold text-[#1c1c1c] mb-1">Create your account</h1>
-            <p className="text-sm text-[#7a6a5a] mb-8">Start sharing your dining experiences today.</p>
-
-            {error && (
-              <div className="mb-5 flex items-center gap-2 bg-red-50 border border-red-200 text-red-700 text-sm px-4 py-3 rounded-xl">
-                <svg className="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd"/>
-                </svg>
-                {error}
-              </div>
-            )}
-
-            <form onSubmit={handleRegister} className="space-y-5">
-              <div>
-                <label className="block text-xs font-semibold text-[#5c5c5c] uppercase tracking-widest mb-2">Username</label>
-                <input
-                  type="text"
-                  placeholder="e.g. john_doe"
-                  value={username}
-                  onChange={e => setUsername(e.target.value)}
-                  required
-                  className="w-full px-4 py-3 border border-[#d4c9bb] rounded-xl text-sm text-[#1c1c1c] bg-[#faf9f6] placeholder-[#b0a090] focus:outline-none focus:border-[#2d5a27] focus:ring-2 focus:ring-[#2d5a27]/10 transition-all"
-                />
-              </div>
-
-              <div>
-                <label className="block text-xs font-semibold text-[#5c5c5c] uppercase tracking-widest mb-2">Password</label>
-                <input
-                  type="password"
-                  placeholder="Create a strong password"
-                  value={password}
-                  onChange={e => setPassword(e.target.value)}
-                  required
-                  className="w-full px-4 py-3 border border-[#d4c9bb] rounded-xl text-sm text-[#1c1c1c] bg-[#faf9f6] placeholder-[#b0a090] focus:outline-none focus:border-[#2d5a27] focus:ring-2 focus:ring-[#2d5a27]/10 transition-all"
-                />
-              </div>
-
-              <div className="bg-[#f0ebe3] border border-[#e0d5c5] rounded-xl px-4 py-3 text-xs text-[#7a6a5a]">
-                You are registering as a <strong className="text-[#1c1c1c]">Customer</strong>. Admin access is managed separately.
-              </div>
-
-              <button
-                type="submit"
-                disabled={loading}
-                className="w-full bg-[#2d5a27] hover:bg-[#234820] disabled:bg-[#7aaa74] text-white font-semibold py-3 rounded-xl transition-all text-sm flex items-center justify-center gap-2">
-                {loading ? (
-                  <>
-                    <svg className="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"/>
-                    </svg>
-                    Creating account...
-                  </>
-                ) : 'Create Account'}
-              </button>
-            </form>
-
-            <p className="text-sm text-[#7a6a5a] mt-6 text-center">
-              Already have an account?{' '}
-              <Link to="/login" className="text-[#2d5a27] font-semibold hover:underline">Sign in</Link>
-            </p>
           </div>
         </div>
+
+        {/* Form body */}
+        <div style={{ padding: '32px 40px' }}>
+
+          {error && (
+            <div style={{
+              background: '#fef2f2', border: '1px solid #fecaca',
+              color: '#dc2626', borderRadius: '12px',
+              padding: '12px 16px', fontSize: '13px',
+              display: 'flex', alignItems: 'center', gap: '8px',
+              marginBottom: '20px',
+            }}>
+              <span>⚠️</span> {error}
+            </div>
+          )}
+
+          <form onSubmit={handleRegister}>
+            {/* Username */}
+            <div style={{ marginBottom: '20px' }}>
+              <label style={{
+                display: 'block', fontSize: '12px', fontWeight: '600',
+                color: '#374151', marginBottom: '8px', letterSpacing: '0.05em',
+                textTransform: 'uppercase',
+              }}>Username</label>
+              <input
+                type="text"
+                placeholder="e.g. john_doe"
+                value={username}
+                onChange={e => setUsername(e.target.value)}
+                required
+                style={{
+                  width: '100%', padding: '13px 16px',
+                  border: '1.5px solid #e5e7eb', borderRadius: '12px',
+                  fontSize: '14px', color: '#111827',
+                  background: '#f9fafb', outline: 'none',
+                  boxSizing: 'border-box', transition: 'border-color 0.2s',
+                  fontFamily: 'inherit',
+                }}
+                onFocus={e => e.target.style.borderColor = '#667eea'}
+                onBlur={e => e.target.style.borderColor = '#e5e7eb'}
+              />
+            </div>
+
+            {/* Password */}
+            <div style={{ marginBottom: '20px' }}>
+              <label style={{
+                display: 'block', fontSize: '12px', fontWeight: '600',
+                color: '#374151', marginBottom: '8px', letterSpacing: '0.05em',
+                textTransform: 'uppercase',
+              }}>Password</label>
+              <input
+                type="password"
+                placeholder="Create a strong password"
+                value={password}
+                onChange={e => setPassword(e.target.value)}
+                required
+                style={{
+                  width: '100%', padding: '13px 16px',
+                  border: '1.5px solid #e5e7eb', borderRadius: '12px',
+                  fontSize: '14px', color: '#111827',
+                  background: '#f9fafb', outline: 'none',
+                  boxSizing: 'border-box', transition: 'border-color 0.2s',
+                  fontFamily: 'inherit',
+                }}
+                onFocus={e => e.target.style.borderColor = '#667eea'}
+                onBlur={e => e.target.style.borderColor = '#e5e7eb'}
+              />
+            </div>
+
+            {/* Info note */}
+            <div style={{
+              background: '#f0f4ff', border: '1px solid #c7d2fe',
+              borderRadius: '12px', padding: '12px 16px',
+              fontSize: '12px', color: '#4338ca',
+              marginBottom: '24px', lineHeight: '1.5',
+            }}>
+              ℹ️ You are registering as a <strong>Customer</strong>. Admin access is managed separately.
+            </div>
+
+            {/* Submit button */}
+            <button
+              type="submit"
+              disabled={loading}
+              style={{
+                width: '100%', padding: '14px',
+                background: loading ? '#a5b4fc' : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                color: '#ffffff', border: 'none', borderRadius: '12px',
+                fontSize: '15px', fontWeight: '700', cursor: loading ? 'not-allowed' : 'pointer',
+                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px',
+                transition: 'opacity 0.2s', fontFamily: 'inherit',
+                boxShadow: loading ? 'none' : '0 4px 15px rgba(102,126,234,0.4)',
+              }}
+              onMouseEnter={e => { if (!loading) e.target.style.opacity = '0.9'; }}
+              onMouseLeave={e => { e.target.style.opacity = '1'; }}
+            >
+              {loading ? (
+                <>
+                  <svg style={{ animation: 'spin 1s linear infinite', width: '16px', height: '16px' }} fill="none" viewBox="0 0 24 24">
+                    <circle style={{ opacity: 0.25 }} cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
+                    <path style={{ opacity: 0.75 }} fill="currentColor" d="M4 12a8 8 0 018-8v8z"/>
+                  </svg>
+                  Creating account...
+                </>
+              ) : '🚀 Create Account'}
+            </button>
+          </form>
+        </div>
+
+        {/* Card footer */}
+        <div style={{
+          borderTop: '1px solid #f3f4f6',
+          padding: '20px 40px',
+          textAlign: 'center',
+          background: '#fafafa',
+        }}>
+          <p style={{ fontSize: '14px', color: '#6b7280', margin: 0 }}>
+            Already have an account?{' '}
+            <Link to="/login" style={{ color: '#667eea', fontWeight: '700', textDecoration: 'none' }}>
+              Sign in here
+            </Link>
+          </p>
+        </div>
       </div>
+
+      <style>{`
+        @keyframes spin { to { transform: rotate(360deg); } }
+      `}</style>
     </div>
   );
 };

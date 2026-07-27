@@ -2,60 +2,85 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Footer = () => (
-  <footer className="bg-[#1c1c1c] text-[#a09080] mt-auto">
-    <div className="max-w-6xl mx-auto px-6 pt-14 pb-8">
+  <footer style={{
+    background: '#0f0f0f',
+    color: '#888',
+    marginTop: 'auto',
+    fontFamily: "'Inter', system-ui, sans-serif",
+  }}>
+    {/* Top gradient bar */}
+    <div style={{ height: '3px', background: 'linear-gradient(90deg, #667eea, #764ba2, #f093fb)' }} />
 
-      {/* Top grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+    <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '56px 24px 32px' }}>
+
+      {/* Grid */}
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+        gap: '40px',
+        marginBottom: '48px',
+      }}>
 
         {/* Brand */}
-        <div className="lg:col-span-1">
-          <div className="flex items-center gap-2 mb-4">
-            <div className="w-8 h-8 rounded-full bg-[#4a8c42] flex items-center justify-center">
-              <span className="text-white text-xs font-bold">RF</span>
+        <div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '14px' }}>
+            <div style={{
+              width: '36px', height: '36px', borderRadius: '10px',
+              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+            }}>
+              <span style={{ color: '#fff', fontSize: '12px', fontWeight: '800' }}>RF</span>
             </div>
-            <span className="font-display font-bold text-white text-lg">RestoFeedback</span>
+            <span style={{ color: '#fff', fontWeight: '700', fontSize: '16px' }}>RestoFeedback</span>
           </div>
-          <p className="text-sm leading-relaxed text-[#7a6a5a] max-w-xs">
-            AI-powered restaurant feedback platform. Real-time insights that help restaurants serve you better.
+          <p style={{ fontSize: '13px', lineHeight: '1.7', color: '#555', maxWidth: '220px' }}>
+            AI-powered restaurant feedback platform delivering real-time insights for better dining.
           </p>
         </div>
 
         {/* Quick Links */}
         <div>
-          <h4 className="text-white font-semibold text-sm mb-4 uppercase tracking-widest">Quick Links</h4>
-          <ul className="space-y-3 text-sm">
+          <h4 style={{ color: '#fff', fontSize: '12px', fontWeight: '700', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '16px' }}>
+            Quick Links
+          </h4>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
             {[
               { to: '/register', label: 'Create Account' },
               { to: '/login',    label: 'Sign In' },
               { to: '/feedback', label: 'Submit Review' },
             ].map(l => (
-              <li key={l.to}>
-                <Link to={l.to} className="text-[#7a6a5a] hover:text-white transition-colors no-underline">
-                  {l.label}
-                </Link>
-              </li>
+              <Link key={l.to} to={l.to} style={{ color: '#666', fontSize: '13px', textDecoration: 'none', transition: 'color 0.2s' }}
+                onMouseEnter={e => e.target.style.color = '#fff'}
+                onMouseLeave={e => e.target.style.color = '#666'}>
+                {l.label}
+              </Link>
             ))}
-          </ul>
+          </div>
         </div>
 
         {/* Features */}
         <div>
-          <h4 className="text-white font-semibold text-sm mb-4 uppercase tracking-widest">Features</h4>
-          <ul className="space-y-3 text-sm text-[#7a6a5a]">
-            <li>AI Sentiment Analysis</li>
-            <li>Real-time Dashboard</li>
-            <li>Review History</li>
-            <li>Secure JWT Auth</li>
-          </ul>
+          <h4 style={{ color: '#fff', fontSize: '12px', fontWeight: '700', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '16px' }}>
+            Features
+          </h4>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+            {['AI Sentiment Analysis', 'Real-time Dashboard', 'Review History', 'Secure JWT Auth'].map(f => (
+              <span key={f} style={{ color: '#555', fontSize: '13px' }}>{f}</span>
+            ))}
+          </div>
         </div>
 
-        {/* Tech */}
+        {/* Tech Stack */}
         <div>
-          <h4 className="text-white font-semibold text-sm mb-4 uppercase tracking-widest">Built With</h4>
-          <div className="flex flex-wrap gap-2">
+          <h4 style={{ color: '#fff', fontSize: '12px', fontWeight: '700', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '16px' }}>
+            Built With
+          </h4>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
             {['React 19', 'Node.js', 'MongoDB', 'Gemini AI', 'Socket.io', 'Tailwind'].map(t => (
-              <span key={t} className="text-xs border border-[#333] text-[#7a6a5a] px-2.5 py-1 rounded-full">
+              <span key={t} style={{
+                fontSize: '11px', padding: '4px 10px', borderRadius: '20px',
+                border: '1px solid #2a2a2a', color: '#555',
+              }}>
                 {t}
               </span>
             ))}
@@ -63,10 +88,20 @@ const Footer = () => (
         </div>
       </div>
 
-      {/* Divider */}
-      <div className="border-t border-[#2a2a2a] pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#4a4a4a]">
+      {/* Bottom bar */}
+      <div style={{
+        borderTop: '1px solid #1e1e1e',
+        paddingTop: '24px',
+        display: 'flex',
+        flexWrap: 'wrap',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        gap: '12px',
+        fontSize: '12px',
+        color: '#3a3a3a',
+      }}>
         <span>© {new Date().getFullYear()} RestoFeedback. All rights reserved.</span>
-        <span>Made with <span className="text-[#8b5e3c]">♥</span> using React & Tailwind CSS</span>
+        <span>Made with <span style={{ color: '#e05252' }}>♥</span> using React & Tailwind CSS</span>
       </div>
     </div>
   </footer>
