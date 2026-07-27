@@ -1,22 +1,25 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  background-color: #f8fafc;
-  color: #1e293b;
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: #faf9f6;
+  color: #1c1c1c;
   -webkit-font-smoothing: antialiased;
 }
 
+.font-display { font-family: 'Playfair Display', Georgia, serif; }
+
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(12px); }
+  from { opacity: 0; transform: translateY(16px); }
   to   { opacity: 1; transform: translateY(0); }
 }
-.fade-up { animation: fadeInUp 0.4s ease both; }
+.fade-up { animation: fadeInUp 0.5s ease both; }
 
 @keyframes urgentPulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.4); }
-  50%       { box-shadow: 0 0 0 8px rgba(220, 38, 38, 0); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(185, 28, 28, 0.3); }
+  50%       { box-shadow: 0 0 0 8px rgba(185, 28, 28, 0); }
 }
 .urgent-ring { animation: urgentPulse 2s ease-in-out infinite; }

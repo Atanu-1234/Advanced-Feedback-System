@@ -33,42 +33,66 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4 py-16">
-      <div className="w-full max-w-sm">
+    <div className="min-h-screen bg-[#faf9f6] flex items-center justify-center px-4 py-16">
+      <div className="w-full max-w-4xl fade-up">
+        <div className="bg-white rounded-3xl shadow-lg border border-[#e8e0d5] overflow-hidden flex flex-col md:flex-row">
 
-        {/* Logo mark */}
-        <div className="flex flex-col items-center mb-8">
-          <div className="w-12 h-12 rounded-2xl bg-blue-600 flex items-center justify-center text-white font-black text-lg shadow-lg mb-4">
-            RF
-          </div>
-          <h1 className="text-2xl font-bold text-gray-900 text-center">Create your account</h1>
-          <p className="text-gray-500 text-sm mt-1 text-center">Start sharing your dining experiences today</p>
-        </div>
+          {/* Left panel */}
+          <div className="bg-[#2d5a27] md:w-5/12 p-10 flex flex-col justify-between">
+            <div>
+              <div className="flex items-center gap-2 mb-10">
+                <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center">
+                  <span className="text-white text-xs font-bold">RF</span>
+                </div>
+                <span className="font-display font-bold text-white text-lg">RestoFeedback</span>
+              </div>
+              <h2 className="font-display text-3xl font-bold text-white leading-snug mb-4">
+                Share your dining story.
+              </h2>
+              <p className="text-[#a8c9a4] text-sm leading-relaxed">
+                Join our community of food lovers helping restaurants grow through honest, AI-analyzed feedback.
+              </p>
+            </div>
 
-        {/* Steps */}
-        <div className="flex items-center justify-center gap-3 mb-8">
-          <div className="flex items-center gap-2">
-            <div className="w-6 h-6 rounded-full bg-blue-600 text-white text-xs font-bold flex items-center justify-center">1</div>
-            <span className="text-sm font-semibold text-blue-600">Register</span>
+            <div className="space-y-4 mt-10">
+              {[
+                { icon: '✦', text: 'Instant AI sentiment analysis' },
+                { icon: '✦', text: 'Track all your past reviews' },
+                { icon: '✦', text: 'Secure & private by default' },
+              ].map(f => (
+                <div key={f.text} className="flex items-center gap-3 text-sm text-[#a8c9a4]">
+                  <span className="text-[#6aaa62] text-xs">{f.icon}</span>
+                  {f.text}
+                </div>
+              ))}
+            </div>
           </div>
-          <div className="w-10 h-px bg-gray-300" />
-          <div className="flex items-center gap-2">
-            <div className="w-6 h-6 rounded-full bg-gray-200 text-gray-400 text-xs font-bold flex items-center justify-center">2</div>
-            <span className="text-sm text-gray-400">Login</span>
-          </div>
-          <div className="w-10 h-px bg-gray-300" />
-          <div className="flex items-center gap-2">
-            <div className="w-6 h-6 rounded-full bg-gray-200 text-gray-400 text-xs font-bold flex items-center justify-center">3</div>
-            <span className="text-sm text-gray-400">Review</span>
-          </div>
-        </div>
 
-        {/* Card */}
-        <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
-          <div className="p-6">
+          {/* Right form panel */}
+          <div className="flex-1 p-10">
+            {/* Steps */}
+            <div className="flex items-center gap-2 mb-8">
+              <div className="flex items-center gap-2">
+                <div className="w-6 h-6 rounded-full bg-[#2d5a27] text-white text-xs font-bold flex items-center justify-center">1</div>
+                <span className="text-sm font-semibold text-[#2d5a27]">Register</span>
+              </div>
+              <div className="flex-1 h-px bg-[#e8e0d5] max-w-8" />
+              <div className="flex items-center gap-2">
+                <div className="w-6 h-6 rounded-full bg-[#f0ebe3] text-[#b0a090] text-xs font-bold flex items-center justify-center">2</div>
+                <span className="text-sm text-[#b0a090]">Login</span>
+              </div>
+              <div className="flex-1 h-px bg-[#e8e0d5] max-w-8" />
+              <div className="flex items-center gap-2">
+                <div className="w-6 h-6 rounded-full bg-[#f0ebe3] text-[#b0a090] text-xs font-bold flex items-center justify-center">3</div>
+                <span className="text-sm text-[#b0a090]">Review</span>
+              </div>
+            </div>
+
+            <h1 className="font-display text-2xl font-bold text-[#1c1c1c] mb-1">Create your account</h1>
+            <p className="text-sm text-[#7a6a5a] mb-8">Start sharing your dining experiences today.</p>
 
             {error && (
-              <div className="mb-4 flex items-center gap-2 bg-red-50 border border-red-200 text-red-600 text-sm px-4 py-3 rounded-xl">
+              <div className="mb-5 flex items-center gap-2 bg-red-50 border border-red-200 text-red-700 text-sm px-4 py-3 rounded-xl">
                 <svg className="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd"/>
                 </svg>
@@ -76,39 +100,39 @@ const Register = () => {
               </div>
             )}
 
-            <form onSubmit={handleRegister} className="space-y-4">
+            <form onSubmit={handleRegister} className="space-y-5">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1.5">Username</label>
+                <label className="block text-xs font-semibold text-[#5c5c5c] uppercase tracking-widest mb-2">Username</label>
                 <input
                   type="text"
                   placeholder="e.g. john_doe"
                   value={username}
                   onChange={e => setUsername(e.target.value)}
                   required
-                  className="w-full px-3.5 py-2.5 border border-gray-300 rounded-xl text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all bg-white"
+                  className="w-full px-4 py-3 border border-[#d4c9bb] rounded-xl text-sm text-[#1c1c1c] bg-[#faf9f6] placeholder-[#b0a090] focus:outline-none focus:border-[#2d5a27] focus:ring-2 focus:ring-[#2d5a27]/10 transition-all"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1.5">Password</label>
+                <label className="block text-xs font-semibold text-[#5c5c5c] uppercase tracking-widest mb-2">Password</label>
                 <input
                   type="password"
                   placeholder="Create a strong password"
                   value={password}
                   onChange={e => setPassword(e.target.value)}
                   required
-                  className="w-full px-3.5 py-2.5 border border-gray-300 rounded-xl text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all bg-white"
+                  className="w-full px-4 py-3 border border-[#d4c9bb] rounded-xl text-sm text-[#1c1c1c] bg-[#faf9f6] placeholder-[#b0a090] focus:outline-none focus:border-[#2d5a27] focus:ring-2 focus:ring-[#2d5a27]/10 transition-all"
                 />
               </div>
 
-              <div className="bg-blue-50 border border-blue-100 rounded-xl px-4 py-3 text-xs text-blue-700">
-                You are registering as a <strong>Customer</strong>. Admin access is managed separately by the system.
+              <div className="bg-[#f0ebe3] border border-[#e0d5c5] rounded-xl px-4 py-3 text-xs text-[#7a6a5a]">
+                You are registering as a <strong className="text-[#1c1c1c]">Customer</strong>. Admin access is managed separately.
               </div>
 
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white font-semibold py-2.5 rounded-xl transition-all text-sm shadow-sm flex items-center justify-center gap-2">
+                className="w-full bg-[#2d5a27] hover:bg-[#234820] disabled:bg-[#7aaa74] text-white font-semibold py-3 rounded-xl transition-all text-sm flex items-center justify-center gap-2">
                 {loading ? (
                   <>
                     <svg className="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24">
@@ -117,22 +141,16 @@ const Register = () => {
                     </svg>
                     Creating account...
                   </>
-                ) : 'Create account'}
+                ) : 'Create Account'}
               </button>
             </form>
-          </div>
 
-          <div className="px-6 py-4 bg-gray-50 border-t border-gray-100 text-center">
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-[#7a6a5a] mt-6 text-center">
               Already have an account?{' '}
-              <Link to="/login" className="text-blue-600 font-semibold hover:underline">Sign in</Link>
+              <Link to="/login" className="text-[#2d5a27] font-semibold hover:underline">Sign in</Link>
             </p>
           </div>
         </div>
-
-        <p className="text-center text-xs text-gray-400 mt-6">
-          By signing up, you agree to our Terms of Service and Privacy Policy.
-        </p>
       </div>
     </div>
   );
