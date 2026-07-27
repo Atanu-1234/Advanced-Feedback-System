@@ -33,7 +33,7 @@ const AdminDashboard = () => {
   const { token } = useContext(AuthContext);
 
   useEffect(() => {
-    const apiBase = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
+    const apiBase = import.meta.env.VITE_API_BASE_URL ;
     const fetchInsights = async () => {
       try {
         const res = await fetch(`${apiBase}/api/insights`, { headers: { Authorization: `Bearer ${token}` } });
@@ -43,7 +43,12 @@ const AdminDashboard = () => {
     };
     fetchInsights();
 
-    const socket = io(apiBase);
+    const socket = io(apiBase, {
+      reconnection: true,
+      reconnectionAttempts: Infinity,
+      reconnectionDelay: 2000,
+      reconnectionDelayMax: 10000,
+    });
     socket.on('connect',      () => setConnected(true));
     socket.on('disconnect',   () => setConnected(false));
     socket.on('new_feedback', (record) => {

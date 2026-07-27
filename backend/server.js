@@ -15,7 +15,7 @@ const { verifyAdmin } = require('./middleware/verifyToken');
 const app = express();
 const server = http.createServer(app);
 
-const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:5173';
+const FRONTEND_URL = process.env.FRONTEND_URL ;
 
 app.use(cors({ origin: FRONTEND_URL, credentials: true }));
 app.use(express.json());
@@ -43,11 +43,16 @@ app.get('/api/insights', verifyAdmin, async (req, res) => {
 });
 
 io.on('connection', (socket) => {
-  console.log(`⚡ Admin client connected: ${socket.id}`);
+  console.log(`⚡ Client connected: ${socket.id}`);
   socket.on('disconnect', () => {
     console.log(`🔥 Client disconnected: ${socket.id}`);
   });
 });
+
+// Keep-alive ping every 14 minutes to prevent Render free tier spin-down
+setInterval(() => {
+  io.emit('ping', { time: new Date().toISOString() });
+}, 14 * 60 * 1000);
 
 const PORT = process.env.PORT || 8000;
 const MONGO_URI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/feedback_db';
